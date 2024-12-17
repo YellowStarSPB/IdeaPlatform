@@ -10,18 +10,9 @@ export const FilterProvider = ({ children }) => {
 		currency: 'RUB',
 		transfer: []
 	});
-  console.log(filters)
-	// Функция для обновления фильтров
-	const updateFilters = (newFilters) => {
-    console.log(newFilters)
-		setFilters((prevFilters) => ({
-			...prevFilters,
-			...newFilters
-		}));
-	};
-
+	console.log(filters.transfer, 'FILTERS');
 	return (
-		<FilterContext.Provider value={{ filters, updateFilters:setFilters }}>
+		<FilterContext.Provider value={{ filters, updateFilters: setFilters }}>
 			{children}
 		</FilterContext.Provider>
 	);

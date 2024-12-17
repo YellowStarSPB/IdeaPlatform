@@ -1,8 +1,8 @@
 import { useFilters } from '../../../app/FilterContext';
 import styles from './TransferCheckbox.module.scss';
 
-function TransferCheckbox({ label, value, handleTransferChange,transfer }) {
-
+function TransferCheckbox({ label, value, handleTransferChange }) {
+	const { transfer } = useFilters().filters;
 	return (
 		<label className={styles.transferCheckbox}>
 			<input

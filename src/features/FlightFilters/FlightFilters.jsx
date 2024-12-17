@@ -10,28 +10,35 @@ const currencies = [
 	{ value: 'EUR', borderType: 'right' }
 ];
 
+const transfers = [
+	{ value: 'all', label: 'Все' },
+	{ value: 'without', label: 'Без пересадок' },
+	{ value: '1', label: '1 Пересадка' },
+	{ value: '2', label: '2 Пересадки' },
+	{ value: '3', label: '3 Пересадки' }
+];
+
 function FlightFilters() {
 	const { filters, updateFilters } = useFilters();
 
 	const handleChangeCurrency = useCallback((value) => {
 		updateFilters((prev) => ({ ...prev, currency: value }));
 	}, []);
-	const handleTransferChange = (event) => {
+
+	const handleTransferChange = useCallback((event) => {
 		const value = event.target.value;
 		const isChecked = event.target.checked;
 
-		// Обновление массива transfer в контексте
 		if (isChecked) {
-			// Добавляем значение в массив, если чекбокс выбран
 			updateFilters((prev) => ({ ...prev, transfer: [...prev.transfer, value] }));
 		} else {
-			// Удаляем значение из массива, если чекбокс снят
 			updateFilters((prev) => ({
 				...prev,
 				transfer: prev.transfer.filter((transferValue) => transferValue !== value)
 			}));
 		}
-	};
+	}, []);
+
 	return (
 		<div className={styles.flightFilters}>
 			<div className={styles.currencies}>
@@ -52,30 +59,13 @@ function FlightFilters() {
 			<div className={styles.transfers}>
 				<h2 className={styles.title}>Количество пересадок</h2>
 				<div className={styles.transfersFilters}>
-					<TransferCheckbox
-						handleTransferChange={handleTransferChange}
-						value="all"
-						label="Все"
-            transfer={filters.transfer}
-					/>
-					<TransferCheckbox
-						handleTransferChange={handleTransferChange}
-						value="1"
-						label="1 пересадка"
-            transfer={filters.transfer}
-					/>
-					<TransferCheckbox
-						handleTransferChange={handleTransferChange}
-						value="2"
-						label="2 пересадки"
-            transfer={filters.transfer}
-					/>
-					<TransferCheckbox
-						handleTransferChange={handleTransferChange}
-						value="3"
-						label="3 пересадки"
-            transfer={filters.transfer}
-					/>
+					{transfers.map((transfer) => (
+						<TransferCheckbox
+							key={transfer.value}
+							handleTransferChange={handleTransferChange}
+							{...transfer}
+						/>
+					))}
 				</div>
 			</div>
 		</div>
