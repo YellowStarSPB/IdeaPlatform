@@ -1,0 +1,16 @@
+@use './assets/reset';
+@use './assets/fonts';
+@use './assets/colors';
+
+body {
+	background-color: var(--dark-white);
+	font: 500 16px / normal Manrope, sans-serif;
+	color: var(--black);
+}
+.main {
+	max-width: 1280px;
+	margin: 50px auto 20px auto;
+	display: flex;
+	align-items: flex-start;
+	gap: 30px;
+}

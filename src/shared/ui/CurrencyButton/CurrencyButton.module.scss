@@ -1,0 +1,26 @@
+.currencyButton {
+	padding: 15px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--accent-color);
+	border: 1px solid var(--light-gray);
+	transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+	&.left {
+		border-radius: 10px 0 0 10px;
+		border-right: none;
+	}
+	&.right {
+		border-radius: 0 10px 10px 0;
+		border-left: none;
+	}
+	&:hover {
+		background-color: var(--filter-button-hover);
+		border-color: var(--filter-button-hover);
+	}
+	&.active {
+		background-color: var(--accent-color);
+    border-color: var(--accent-color);
+		color: var(--white);
+	}
+}
